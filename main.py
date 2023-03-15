@@ -8,21 +8,57 @@ import requests
 from queue import Queue
 from bs4 import BeautifulSoup
 from UI import Ui_MainWindow
-from PySide6.QtWidgets import QMainWindow, QApplication, QFileDialog
+from category import Ui_Dialog as CategoryUI
+from regul_edit import Ui_Dialog as RegularUI
+from PySide6.QtWidgets import QMainWindow, QApplication, QFileDialog, QDialog
 from sys import argv, exit
+
+
+class CategoryEditWindow(QDialog, CategoryUI):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setFixedSize(self.width(), self.height())
+
+    def __init_buttons(self):
+        pass
+
+    def __save_exit(self):
+        self.close()
+
+    def __exit(self):
+        self.close()
+
+
+class RegulaEditWindow(QDialog, RegularUI):
+
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setFixedSize(self.width(), self.height())
+        self.__init_buttons()
+
+    def __open_category_editor(self):
+        dialog = CategoryEditWindow()
+        dialog.exec()
+
+    def __init_buttons(self):
+        self.bt_categ_edit.clicked.connect(self.__open_category_editor)
+
+    def __save_exit(self):
+        self.close()
+
+    def __exit(self):
+        self.close()
 
 
 class CrawlerWindow(QMainWindow, Ui_MainWindow):
     # Инициализация
     def __init__(self):
         super().__init__()
-        # Настриваем интерфейс
         self.setupUi(self)
-        self.retranslateUi(self)
-        # Инициализируем функции кнопок
+        self.setFixedSize(self.width(), self.height())
         self.__init_buttons()
-
-    # Инициализируем функционал кнопок
 
     def __init_variables(self):
         self.input_file = None
@@ -31,40 +67,11 @@ class CrawlerWindow(QMainWindow, Ui_MainWindow):
         self.output_file = None
         self.output_existing_file = None
 
-    # Инициализируем функционал кнопок
     def __init_buttons(self):
         self.bt_exit.clicked.connect(self.__exit)
-        self.bt_sites.clicked.connect(self.__open_input_file)
-        self.bt_regul.clicked.connect(self.__open_reg_file)
+        self.bt_regul.clicked.connect(self.__open_change_reg_window)
         self.bt_base_open.clicked.connect(self.__open_existing_base)
         self.bt_base_save.clicked.connect(self.__save_as)
-
-    def __open_input_file(self):
-        self.input_file = (QFileDialog.getOpenFileName(self, "Открыть базу сайтов", sys.argv[0],
-                                                       "Текстовый файл (*.txt)"))[0]
-        test_reg = re.compile(r"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.["
-                              r"a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))["
-                              r"a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
-        with open(self.input_file) as file:
-            self.input_file_containment = []
-            for i in file:
-                if test_reg.search(i):
-                    self.input_file_containment.append(i)
-                else:
-                    self.input_file = None
-                    self.input_file_containment = None
-                    #TODO
-                    #Вывести окно ошибки с указанием места ошибки
-                    break
-
-    def __open_reg_file(self):
-        self.reg_file = (QFileDialog.getOpenFileName(self, "Открыть базу выражений поиска", sys.argv[0],
-                                                     "JSON файл (*.json)"))[0]
-        # TODO
-        # открытие файла
-        # Чтение его содержимого и сохранение
-        # Вывод на окно с сайтами
-        # Если ошибка при чтении, то окно об ошибке с указанием где ошибка
 
     def __open_existing_base(self):
         self.output_existing_file = (QFileDialog.getOpenFileName(self, "Открыть базу результатов", sys.argv[0],
@@ -79,6 +86,10 @@ class CrawlerWindow(QMainWindow, Ui_MainWindow):
     def __save_as(self):
         self.output_file = (QFileDialog.getSaveFileName(self, "Сохранить базу результатов", sys.argv[0],
                                                         "Текстовый файл (*.txt)"))[0]
+
+    def __open_change_reg_window(self):
+        dialog = RegulaEditWindow()
+        dialog.exec()
 
     # Закрывает программу
     def __exit(self):

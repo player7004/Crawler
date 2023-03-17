@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>617</width>
-    <height>546</height>
+    <width>672</width>
+    <height>542</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,19 +25,12 @@
      <rect>
       <x>10</x>
       <y>13</y>
-      <width>604</width>
+      <width>654</width>
       <height>482</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Регул. выражения</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="9">
+     <item row="7" column="10">
       <widget class="QPushButton" name="bt_exit">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -51,20 +44,6 @@
       </widget>
      </item>
      <item row="1" column="9">
-      <widget class="QPushButton" name="bt_base_open">
-       <property name="text">
-        <string>Открыть базу</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>База сайтов</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="8">
       <widget class="QPushButton" name="bt_base_save">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -77,27 +56,17 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="7">
-      <widget class="QLabel" name="label_3">
+     <item row="1" column="2" colspan="2">
+      <widget class="QPushButton" name="bt_regul">
        <property name="text">
-        <string>База результатов</string>
+        <string>Редактировать</string>
        </property>
       </widget>
+     </item>
+     <item row="3" column="8" rowspan="4" colspan="3">
+      <widget class="QTableView" name="table_base"/>
      </item>
      <item row="7" column="8">
-      <widget class="QPushButton" name="bt_start">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Старт</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="7">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -113,26 +82,27 @@
        </property>
       </spacer>
      </item>
-     <item row="7" column="1">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+     <item row="7" column="9">
+      <widget class="QPushButton" name="bt_start">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+       <property name="text">
+        <string>Старт</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>75</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
+      </widget>
      </item>
-     <item row="3" column="7" rowspan="4" colspan="3">
-      <widget class="QTableView" name="table_base"/>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Регул. выражения</string>
+       </property>
+      </widget>
      </item>
-     <item row="4" column="3">
+     <item row="4" column="4">
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -148,23 +118,50 @@
        </property>
       </spacer>
      </item>
-     <item row="6" column="0" colspan="3">
-      <widget class="QTableView" name="table_sites"/>
-     </item>
-     <item row="3" column="0" colspan="3">
-      <widget class="QTableView" name="tableView"/>
-     </item>
-     <item row="1" column="1" colspan="2">
-      <widget class="QPushButton" name="bt_regul">
+     <item row="1" column="10">
+      <widget class="QPushButton" name="bt_base_open">
        <property name="text">
-        <string>Редактировать</string>
+        <string>Открыть базу</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1" colspan="2">
+     <item row="1" column="8">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>База результатов</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>База сайтов</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0" rowspan="4" colspan="4">
+      <widget class="QTableView" name="tableView"/>
+     </item>
+     <item row="7" column="3">
       <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>Редактировать</string>
+        <string>Обзор...</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1" colspan="2">
+      <widget class="QCheckBox" name="checkBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>База не загружена</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -176,7 +173,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>617</width>
+     <width>672</width>
      <height>22</height>
     </rect>
    </property>

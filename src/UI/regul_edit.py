@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'regulePeyGR.ui'
+## Form generated from reading UI file 'regulzkkWMF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.0
 ##
@@ -76,6 +76,6 @@ class Ui_Dialog(object):
         self.combo_category.setItemText(0, QCoreApplication.translate("Dialog", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044e", None))
 
         self.label.setText(QCoreApplication.translate("Dialog", u"\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438", None))
-        self.bt_cancel.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
+        self.bt_cancel.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0445\u043e\u0434", None))
     # retranslateUi
 

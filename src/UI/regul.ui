@@ -91,7 +91,7 @@
     <item row="2" column="3">
      <widget class="QPushButton" name="bt_cancel">
       <property name="text">
-       <string>Отмена</string>
+       <string>Выход</string>
       </property>
      </widget>
     </item>

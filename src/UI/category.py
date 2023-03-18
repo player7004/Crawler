@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'categaQfUoT.ui'
+## Form generated from reading UI file 'categNyBElg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.0
 ##
@@ -39,15 +39,15 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.line_categ_name, 6, 1, 1, 1)
 
-        self.bt_delete = QPushButton(self.gridLayoutWidget)
-        self.bt_delete.setObjectName(u"bt_delete")
-
-        self.gridLayout.addWidget(self.bt_delete, 7, 0, 1, 1)
-
         self.table_categ = QTableView(self.gridLayoutWidget)
         self.table_categ.setObjectName(u"table_categ")
 
         self.gridLayout.addWidget(self.table_categ, 1, 0, 5, 2)
+
+        self.bt_exit = QPushButton(self.gridLayoutWidget)
+        self.bt_exit.setObjectName(u"bt_exit")
+
+        self.gridLayout.addWidget(self.bt_exit, 7, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)
@@ -59,6 +59,6 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439", None))
         self.bt_add.setText(QCoreApplication.translate("Dialog", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u0418\u043c\u044f \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438", None))
-        self.bt_delete.setText(QCoreApplication.translate("Dialog", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
+        self.bt_exit.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0445\u043e\u0434", None))
     # retranslateUi
 

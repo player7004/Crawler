@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'categNyBElg.ui'
+## Form generated from reading UI file 'categCBtwKy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.0
 ##
@@ -24,16 +24,6 @@ class Ui_Dialog(object):
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.bt_add = QPushButton(self.gridLayoutWidget)
-        self.bt_add.setObjectName(u"bt_add")
-
-        self.gridLayout.addWidget(self.bt_add, 7, 1, 1, 1)
-
-        self.label = QLabel(self.gridLayoutWidget)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 6, 0, 1, 1)
-
         self.line_categ_name = QLineEdit(self.gridLayoutWidget)
         self.line_categ_name.setObjectName(u"line_categ_name")
 
@@ -44,10 +34,29 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.table_categ, 1, 0, 5, 2)
 
+        self.label = QLabel(self.gridLayoutWidget)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout.addWidget(self.label, 6, 0, 1, 1)
+
+        self.bt_add = QPushButton(self.gridLayoutWidget)
+        self.bt_add.setObjectName(u"bt_add")
+
+        self.gridLayout.addWidget(self.bt_add, 7, 0, 1, 1)
+
+        self.bt_del = QPushButton(self.gridLayoutWidget)
+        self.bt_del.setObjectName(u"bt_del")
+
+        self.gridLayout.addWidget(self.bt_del, 7, 1, 1, 1)
+
         self.bt_exit = QPushButton(self.gridLayoutWidget)
         self.bt_exit.setObjectName(u"bt_exit")
 
-        self.gridLayout.addWidget(self.bt_exit, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.bt_exit, 9, 1, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer, 9, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)
@@ -57,8 +66,9 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439", None))
-        self.bt_add.setText(QCoreApplication.translate("Dialog", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u0418\u043c\u044f \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438", None))
+        self.bt_add.setText(QCoreApplication.translate("Dialog", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.bt_del.setText(QCoreApplication.translate("Dialog", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.bt_exit.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0445\u043e\u0434", None))
     # retranslateUi
 

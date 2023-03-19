@@ -42,8 +42,15 @@ class BaseTableModel(QAbstractTableModel):
 
     def __init__(self, parent, data):
         super().__init__(parent)
-        self.my_data = data
+        self.my_data = self.__prepare_data(data)
         self.header = ["Сайт", "Код", "Категория"]
+
+    @staticmethod
+    def __prepare_data(data):
+        normalised_data = []
+        for i in data:
+            normalised_data.append([i, data[i][0], data[i][1]])
+        return normalised_data
 
     def rowCount(self, index):
         return len(self.my_data)

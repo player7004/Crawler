@@ -1,4 +1,3 @@
 from error_window import ErrorMessageWindow
-from category_window import CategoryEditWindow
 from regulars_window import RegularEditWindow
 from main_window import MainWindow

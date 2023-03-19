@@ -10,14 +10,46 @@ from queue import Queue
 from bs4 import BeautifulSoup
 from windows import MainWindow
 
+from time import sleep
+
 
 class Crawler(MainWindow):
 
     def __init__(self):
         super().__init__()
 
-    def _start(self):
+    def _force_close(self):
+        # Сюда запиши код, который будет выполняться, если пользователь захочет закрыть программу
         pass
+
+    def _start(self):
+        self._set_running(True)
+        # Сайты в формате ["https://сайт1.ru", "https://сайт2.ru"]
+        self.sites = self._get_sites()
+        # Регулярки в формате {
+        # "Категория" : ["выражение1", "выражение2"]
+        # }
+        self.regulars = self._get_regulars()
+        #Твой код
+        # Результат храни в словаре. Ключ - адрес сайта строкой
+        # Содержимое - массив, где первое значение - код ответа, а второе - категория
+        # Если категория не определена, то оставь ""
+        # Формат результата - {
+        #   адрес сайта: [код ответа, категория]
+        # }
+        # Могут возникнуть проблемы с потоками из-за использования Qt
+        # Тогда рекомендую посмотреть QThread или можешь мне написать и там решим
+
+        # Сохранение в файл не делай. Оно уже реализовано в интерфейсе
+        # Просто в self._done скинь результат в вышеописанном виде
+
+
+        result = {"https://site.ru": ["200", "Новости"],
+                  "https://unknownsite.com": ["200", ""]
+                  }
+
+        self._done(result)
+        self._set_running(False)
 
 
 

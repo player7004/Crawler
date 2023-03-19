@@ -8,154 +8,16 @@ from urllib.parse import urlparse
 import requests
 from queue import Queue
 from bs4 import BeautifulSoup
-
-from operator import itemgetter
-
-from json import load, dumps
-
-from ui import MainWindowUI
-from ui import CategoryUI
-from ui import RegularUI
-from table_views import RegulTableModel
-from PySide6.QtWidgets import QMainWindow, QFileDialog
-from sub_windows import CategoryEditWindow, RegulaEditWindow
+from windows import MainWindow
 
 
-class CrawlerWindow(QMainWindow, MainWindowUI):
-    # Инициализация
+class Crawler(MainWindow):
+
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
-        self.setFixedSize(self.width(), self.height())
-        self.__init_buttons()
-        self.__init_variables()
 
-    def __init_variables(self):
-        self.sites_file = None
-        self.sites_file_containment = None
-        self.sites_loaded = False
-
-        self.reg_file = None
-        self.reg_file_containment = None
-        self.reg_loaded = None
-
-        self.output_file = None
-        self.output_existing_file = None
-
-    def __init_buttons(self):
-        self.bt_exit.clicked.connect(self.__exit)
-        self.bt_start.clicked.connect(None)
-
-        self.bt_regul.clicked.connect(self.__open_change_reg_window)
-        self.bt_regul_load.clicked.connect(self.__open_regs)
-        self.bt_regul_save.clicked.connect(self.__save_reg_as)
-
-        self.bt_base_open.clicked.connect(self.__open_existing_base)
-        self.bt_base_save.clicked.connect(self.__save_base_as)
-
-        self.pushButton.clicked.connect(self.__open_sites)
-        self.sites_button.toggled.connect(self.__toggle_sites_label_change)
-
-    def __open_existing_base(self):
-        self.output_existing_file = (QFileDialog.getOpenFileName(self, "Открыть базу результатов", sys.argv[0],
-                                                                 "Текстовый файл (*.txt)"))[0]
-
-    def __open_sites(self):
-        self.sites_file = (QFileDialog.getOpenFileName(self, "Открыть базу сайтов", sys.argv[0],
-                                                       "Текстовый файл (*.txt)"))[0]
-        if self.sites_file == '':
-            self.sites_file = None
-            self.sites_file_containment = None
-            self.sites_loaded = False
-            return
-
-        self.sites_file_containment = []
-        url_pattern = re.compile(r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:["
-                                 r"-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$")
-        with open(self.sites_file) as file:
-            for site in file:
-                site = site.replace("\n", "")
-                result = url_pattern.search(site)
-                if result:
-                    self.sites_file_containment.append(site)
-
-        if len(self.sites_file_containment) > 0:
-            self.sites_loaded = True
-        else:
-            self.sites_loaded = False
-        self.__toggle_sites_label_change()
-
-    def __save_base_as(self):
-        self.output_file = (QFileDialog.getSaveFileName(self, "Сохранить базу результатов", sys.argv[0],
-                                                        "Текстовый файл (*.txt)"))[0]
-
-    def __save_reg_as(self):
-        output_file = (QFileDialog.getSaveFileName(self, "Сохранить регулярные выражения", sys.argv[0],
-                                                        "JSON файл (*.json)"))[0]
-        if output_file == '':
-            return
-
-        with open(output_file, mode='w', encoding="UTF-8") as file:
-            print(dumps(self.reg_file_containment, ensure_ascii=False).encode("UTF-8").decode("UTF-8"))
-            file.write(dumps(self.reg_file_containment, ensure_ascii=False).encode("UTF-8").decode("UTF-8"))
-
-    def __open_change_reg_window(self):
-        dialog = RegulaEditWindow()
-        dialog.exec()
-
-    def __open_regs(self):
-        if self.reg_loaded:
-            self.tableView.setModel(None)
-            self.reg_file = None
-            self.reg_loaded = False
-            self.reg_file_containment = None
-
-        self.reg_file = (QFileDialog.getOpenFileName(self, "Загрузить регулярные выражения", sys.argv[0],
-                                                     "JSON файл (*.json)"))[0]
-        if self.reg_file == '':
-            self.reg_file = None
-            self.reg_loaded = False
-            self.reg_file_containment = None
-            return
-
-        self.reg_file_containment = {}
-        with open(self.reg_file, mode='r', encoding="UTF-8") as file:
-            try:
-                json_data = load(file)
-            except:
-                self.reg_file_containment = None
-                return
-            normalised_data = []
-            for i in json_data:
-                for j in json_data[i]:
-                    normalised_data.append([i, j])
-            model = RegulTableModel(self.tableView, normalised_data)
-            self.reg_file_containment = json_data
-
-            self.reg_loaded = True
-
-            self.tableView.setModel(model)
-            self.tableView.setColumnWidth(0, self.tableView.width() / 3 - 15)
-            self.tableView.setColumnWidth(1, (self.tableView.width() * 2) / 3 - 8)
-
-    def __start_button(self):
+    def _start(self):
         pass
-
-    def __toggle_sites_label_change(self):
-        if self.sites_loaded:
-            self.sites_button.setChecked(True)
-            self.sites_button.setText(f"База загружена: {self.sites_file}")
-        else:
-            self.sites_button.setChecked(False)
-            self.sites_button.setText("База не загружена")
-
-    def __add_json_to_table_view(self, Json):
-        for i in Json:
-            print(i, Json[i])
-
-    # Закрывает программу
-    def __exit(self):
-        self.close()
 
 
 
@@ -374,4 +236,5 @@ class CrawlerWindow(QMainWindow, MainWindowUI):
 #         threading.Thread(target=handle_url, args=(main_queue,), daemon=True).start()
 #     main_queue.join()
 #     fr_desc.close()
+
 

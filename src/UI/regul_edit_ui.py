@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'regulzkkWMF.ui'
+## Form generated from reading UI file 'regulFgDuQe.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.0
 ##
@@ -24,11 +24,6 @@ class Ui_Dialog(object):
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.text_regul = QTextEdit(self.gridLayoutWidget_2)
-        self.text_regul.setObjectName(u"text_regul")
-
-        self.gridLayout_2.addWidget(self.text_regul, 1, 1, 1, 3)
-
         self.label_2 = QLabel(self.gridLayoutWidget_2)
         self.label_2.setObjectName(u"label_2")
 
@@ -62,6 +57,11 @@ class Ui_Dialog(object):
         self.bt_cancel.setObjectName(u"bt_cancel")
 
         self.gridLayout_2.addWidget(self.bt_cancel, 2, 3, 1, 1)
+
+        self.regular_list = QListView(self.gridLayoutWidget_2)
+        self.regular_list.setObjectName(u"regular_list")
+
+        self.gridLayout_2.addWidget(self.regular_list, 1, 1, 1, 3)
 
 
         self.retranslateUi(Dialog)

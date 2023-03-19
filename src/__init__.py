@@ -1,1 +1,1 @@
-from prog import CrawlerWindow as Crawler
+from crawler import Crawler

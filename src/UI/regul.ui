@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>469</width>
+    <width>551</width>
     <height>209</height>
    </rect>
   </property>
@@ -18,54 +18,15 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>450</width>
+     <width>526</width>
      <height>191</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Выражение</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="3">
      <widget class="QPushButton" name="bt_categ_edit">
       <property name="text">
        <string>Редактор категорий</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QComboBox" name="combo_category">
-      <item>
-       <property name="text">
-        <string>Выберите категорию</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>151</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Категории</string>
       </property>
      </widget>
     </item>
@@ -85,6 +46,46 @@
       </property>
      </spacer>
     </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="bt_add">
+      <property name="text">
+       <string>Добавить</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="combo_category">
+      <item>
+       <property name="text">
+        <string>Выберите категорию</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="bt_del">
+      <property name="text">
+       <string>Удалить</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="3">
+     <widget class="QListView" name="regular_list"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Категории</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Выражение</string>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="3">
      <widget class="QPushButton" name="bt_cancel">
       <property name="text">
@@ -92,8 +93,12 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1" colspan="3">
-     <widget class="QListView" name="regular_list"/>
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="text">
+       <string>Введите имя выражения</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

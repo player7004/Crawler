@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 import requests
 from queue import Queue
 from bs4 import BeautifulSoup
-from windows import MainWindow
+from src.windows import MainWindow
 
 from time import sleep
 

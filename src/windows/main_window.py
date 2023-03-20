@@ -2,10 +2,10 @@ import sys
 import re
 from json import load, dumps
 
-from ui import MainWindowUI
-from views import RegularTableModel, BaseTableModel
-from windows import RegularEditWindow
-from windows import ErrorMessageWindow
+from src.ui import MainWindowUI
+from src.views import RegularTableModel, BaseTableModel
+from src.windows import RegularEditWindow
+from src.windows import ErrorMessageWindow
 
 from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 
@@ -45,7 +45,7 @@ class MainWindow(QMainWindow, MainWindowUI):
         # Флаг указывающий на то загружены регулярные выражения или нет
         # Если регулярные выражения загружены, то мы не можем запустить программу
         self.__regulars_loaded = None
-        self.__regulars_model = RegularTableModel(self.tableView, self.__regulars_file_containment)
+        self.__regulars_model = RegularTableModel(self.tableView, {})
 
         # Путь сохранения результата
         self.__base_file = None
@@ -61,7 +61,7 @@ class MainWindow(QMainWindow, MainWindowUI):
         # Содержимое загруженного файла результатов
         self.__base_existing_file_containment = {}
 
-        self.__base_model = BaseTableModel(self.table_base, self.__base_file_containment)
+        self.__base_model = BaseTableModel(self.table_base, {})
 
     def __init_ui(self):
         # Окно вывода информации об ошибке
@@ -143,6 +143,11 @@ class MainWindow(QMainWindow, MainWindowUI):
             print(self.__sites_file_containment)
             self.__toggle_sites_label_change()
         else:
+            self.__error_window.showMessage(f"Не удалось загрузить файл: {sites_file}."
+                                            f" Во время обработки содержимого файла возникла ошибка - "
+                                            f"файл пуст."
+                                            f" Проверьте содержимое файла и повторите загрузку."
+                                            , "sites_loading_file_empty_error")
             return
 
     def __drop_sites(self):
@@ -258,8 +263,11 @@ class MainWindow(QMainWindow, MainWindowUI):
     def __update_regulars_table(self):
         self.__regulars_model = RegularTableModel(self.tableView, self.__regulars_file_containment)
         self.tableView.setModel(self.__regulars_model)
-        self.tableView.setColumnWidth(0, self.tableView.width() * 0.33)
-        self.tableView.setColumnWidth(1, self.tableView.width() * 0.66)
+        if self.__regulars_loaded:
+            self.tableView.setColumnWidth(0, (self.tableView.width() * 0.33) - 10)
+            self.tableView.setColumnWidth(1, self.tableView.width() * 0.64)
+        else:
+            self.tableView.resizeColumnsToContents()
 
     def __save_base_as(self):
         # Запрет сохранения, если программа всё ещё работает
@@ -355,10 +363,10 @@ class MainWindow(QMainWindow, MainWindowUI):
         elif self.__base_loaded:
             self.__base_model = BaseTableModel(self.table_base, self.__base_existing_file_containment)
         else:
-            self.table_base.setColumnWidth(0, self.table_base.width() * 0.5)
-            self.table_base.setColumnWidth(1, self.table_base.width() * 0.2 - 25)
-            self.table_base.setColumnWidth(2, self.table_base.width() * 0.3)
+            self.table_base.setModel(self.__base_model)
+            self.table_base.resizeColumnsToContents()
             return
+
         self.table_base.setModel(self.__base_model)
         self.table_base.setColumnWidth(0, self.table_base.width() * 0.5)
         self.table_base.setColumnWidth(1, self.table_base.width() * 0.2 - 25)

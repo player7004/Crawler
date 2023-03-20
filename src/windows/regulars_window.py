@@ -1,6 +1,6 @@
-from ui import RegularUI
-from views import RegularsEditListModel
-from windows import ErrorMessageWindow
+from src.ui import RegularUI
+from src.views import RegularsEditListModel
+from src.windows import ErrorMessageWindow
 from PySide6.QtWidgets import QDialog
 
 

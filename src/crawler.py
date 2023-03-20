@@ -20,6 +20,7 @@ class Crawler(MainWindow):
 
     def _force_close(self):
         # Сюда запиши код, который будет выполняться, если пользователь захочет закрыть программу
+        # Ничего не получилось)))
         pass
 
     def _start(self):

@@ -100,7 +100,7 @@ class MainWindow(QMainWindow, MainWindowUI):
     def __open_sites(self):
         # Запрет смены базы во время работы программы
         if self.__running:
-            self.__error_window.showMessage("Смена базы сайтов невозможна во время работы программы."
+            self.__error_window.showMessage("Смена базы сайтов невозможно во время работы программы."
                                             " Остановите программу или дождитесь окончания её работы для"
                                             "загрузки новой базы сайтов.",
                                             "sites_program_working_error")
@@ -140,7 +140,6 @@ class MainWindow(QMainWindow, MainWindowUI):
             self.__sites_file = sites_file
             self.__sites_loaded = True
             self.__sites_file_containment = temp_base
-            print(self.__sites_file_containment)
             self.__toggle_sites_label_change()
         else:
             self.__error_window.showMessage(f"Не удалось загрузить файл: {sites_file}."
@@ -311,7 +310,7 @@ class MainWindow(QMainWindow, MainWindowUI):
     def __open_existing_base(self):
         # Запрет смены базы во время работы программы
         if self.__running:
-            self.__error_window.showMessage("Открытие готовой базы сайтов невозможна во время работы программы."
+            self.__error_window.showMessage("Открытие готовой базы сайтов невозможно во время работы программы."
                                             " Остановите программу или дождитесь окончания её работы для"
                                             "загрузки новой базы сайтов.",
                                             "base_program_working_error")
@@ -402,16 +401,22 @@ class MainWindow(QMainWindow, MainWindowUI):
                                             , "start_sites_not_loaded_error")
             return
 
+        print("1", self.__program_worked, self.__base_file_containment)
         if self.__program_worked:
             self.__drop_base_result()
 
         if self.__base_loaded:
             self.__drop_opened_base_result()
 
+        print("2", self.__program_worked, self.__base_file_containment)
+        self.__update_base_table()
         self._start()
 
     def _set_running(self, flag):
         self.__running = flag
+
+    def _get_running(self):
+        return self.__running
 
     def _done(self, result):
         self.__program_worked = True

@@ -401,14 +401,12 @@ class MainWindow(QMainWindow, MainWindowUI):
                                             , "start_sites_not_loaded_error")
             return
 
-        print("1", self.__program_worked, self.__base_file_containment)
         if self.__program_worked:
             self.__drop_base_result()
 
         if self.__base_loaded:
             self.__drop_opened_base_result()
 
-        print("2", self.__program_worked, self.__base_file_containment)
         self.__update_base_table()
         self._start()
 
